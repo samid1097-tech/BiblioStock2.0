@@ -46,5 +46,3 @@ def registrar_libros():
         json.dump(inventario, archivo, indent=4, ensure_ascii=False)
 
     print("¡Inventario actualizado correctamente! Chao con adiós.")
-
-registrar_libros()

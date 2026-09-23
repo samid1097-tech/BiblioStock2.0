@@ -32,4 +32,3 @@ def registrar_prestamo():
     except FileNotFoundError:
             print ("no contamos con libros disponible")
 
-registrar_prestamo()
