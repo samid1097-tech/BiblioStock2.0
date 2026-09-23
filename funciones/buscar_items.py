@@ -1,17 +1,30 @@
-def buscar_item(inventario):
-    busqueda = input("Ingrese el código o título: ").strip().lower()
+import json
 
-    for libro in inventario:
-        if busqueda == libro["codigo"].lower() or busqueda == libro["titulo"].lower():
-            print(
-                "Código:", libro["codigo"],
-                "\nTítulo:", libro["titulo"],
-                "\nAutor:", libro["autor"],
-                "\nCantidad total:", libro["cantidad_total"],
-                "\nCantidad disponible:", libro["cantidad_disponible"],
-                "\nUbicación:", libro["ubicacion"]
-            )
-            return libro
+def buscar_item():
+    try:
+        with open("inventario.json", "r") as archivo:
+            libros = json.load(archivo)
 
-    print("Libro no encontrado")
-    return None
+        busqueda = input("Ingrese el código o título del libro: ").lower()
+
+        encontrado = False
+
+        for libro in libros.values():
+            if busqueda == libro["codigo"].lower() or busqueda == libro["titulo"].lower():
+                print("--- LIBRO ENCONTRADO ---")
+                print(f"Código: {libro['codigo']}")
+                print(f"Título: {libro['titulo']}")
+                print(f"Autor: {libro['autor']}")
+                print(f"Categoría: {libro['categoria']}")
+                print(f"Cantidad: {libro['cantidad']}")
+                print(f"Ubicación: {libro['ubicacion']}")
+
+                encontrado = True
+
+        if not encontrado:
+            print("No se encontró el libro.")
+
+    except FileNotFoundError:
+        print("No contamos con libros registrados.")
+
+buscar_item()

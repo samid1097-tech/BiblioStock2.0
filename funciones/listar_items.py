@@ -3,17 +3,16 @@ import json
 def listar_items():
 
     try:
-        with open("inventario.json", "r") as archivo:
-            libros = json.load(archivo)
-
-            for libro in libros:
-                print("Código:", libro["codigo"])
-                print("Título:", libro["titulo"])
-                print("Autor:", libro["autor"])
-                print("Cantidad disponible:", libro["cantidad_disponible"])
-                print("Ubicación:", libro["ubicacion"])
-                print()
-
+        with open("inventario.json","r") as archivo:
+                libros = json.load(archivo)
+                print("--- LIBROS DISPONIBLES ---")
+                print("")
+                for x in libros.values():
+                    print(f"codigo: {x['codigo']}")
+                    print(f"titulo: {x['titulo']}")
+                    print(f"autor: {x['autor']}")
+                    print(f"cantidad: {x['cantidad']}")
+                    print("")
     except FileNotFoundError:
         print("No contamos con libros disponibles")
 
